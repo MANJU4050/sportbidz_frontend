@@ -1,9 +1,10 @@
+import AppRoutes from "./router"
 
 function App() {
 
   return (
     <>
-      <h1>SPORTBIDZ</h1>
+      <AppRoutes />
     </>
   )
 }
