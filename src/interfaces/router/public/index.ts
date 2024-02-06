@@ -1,4 +1,5 @@
 export enum Public {
-   Home = '/'
+   Home = '/',
+   SignUp = '/signup'
 }
 

@@ -1,8 +1,8 @@
 
-const Home = () => {
+const SportzBid = () => {
   return (
-    <div>SPORTBIDZ</div>
+    <div>SportzBid</div>
   )
 }
 
-export default Home
+export default SportzBid
