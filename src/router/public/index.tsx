@@ -5,6 +5,7 @@ import { RouteProps } from "../../interfaces/router"
 
 const SportzBid = lazy(() => import('../../pages/index'))
 const SignUp = lazy(() => import('../../pages/auth/signup/index'))
+const SignIn = lazy(() => import('../../pages/auth/signin/index'))
 
 const PublicRoutes: RouteProps[] = [
 
@@ -20,8 +21,13 @@ const PublicRoutes: RouteProps[] = [
     name: 'SignUp',
     element: <SignUp />,
     isVisible: true,
-    isIndex: true
-  }
+  },
+  {
+    path: Public.SignIn,
+    name: 'SignIn',
+    element: <SignIn />,
+    isVisible: true,
+  },
 
 ]
 

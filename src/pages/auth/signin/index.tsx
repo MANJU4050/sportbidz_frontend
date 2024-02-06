@@ -3,31 +3,29 @@ import { useFormik } from 'formik'
 import { Button, FormControl, FormLabel, FormErrorMessage, Input, useToast, Link as ChakraLink } from '@chakra-ui/react';
 import { Link as ReactRouterLink } from 'react-router-dom';
 
+import styles from '../../../assets/css/pages/auth/signin/index.module.css'
+import { UserLogin } from '../../../interfaces/api/users';
+import { loginUserApi } from '../../../api/auth/users';
+import { userLoginSchema } from '../../../validators/userValidation'
 
-import styles from '../../../assets/css/pages/auth/signup/index.module.css'
-import { UserRegistration } from '../../../interfaces/api/users';
-import { registerUserApi } from '../../../api/auth/users';
-import { userRegistrationSchema } from '../../../validators/userValidation'
-
-const SignUp = () => {
+const SignIn = () => {
 
     const toast = useToast()
 
     const [isSubmiting, setIsSubmiting] = useState(false)
 
     const initialValues = {
-        name: '',
         mobile: '',
         password: ''
     }
 
-    const handleSubmit = async (values: UserRegistration, { resetForm }: { resetForm: () => void }) => {
+    const handleSubmit = async (values: UserLogin, { resetForm }: { resetForm: () => void }) => {
         try {
             setIsSubmiting(true)
-            await registerUserApi(values)
+            await loginUserApi(values)
             resetForm()
             toast({
-                title: 'registration successfull',
+                title: 'login successfull',
                 status: 'success',
                 position: 'top-right',
                 isClosable: true
@@ -47,7 +45,7 @@ const SignUp = () => {
 
     const formik = useFormik({
         initialValues: initialValues,
-        validationSchema: userRegistrationSchema,
+        validationSchema: userLoginSchema,
         onSubmit: handleSubmit
     })
 
@@ -55,11 +53,6 @@ const SignUp = () => {
         <div className={styles.container}>
             <form onSubmit={formik.handleSubmit}>
                 <div className={styles.formcontainer}>
-                    <FormControl isRequired isInvalid={formik.errors.name && formik.touched.name ? true : undefined}>
-                        <FormLabel>Name</FormLabel>
-                        <Input name='name' type="text" placeholder='name' value={formik.values.name} onChange={formik.handleChange} onBlur={formik.handleBlur} />
-                        <FormErrorMessage>{formik.errors.name}</FormErrorMessage>
-                    </FormControl>
                     <FormControl isRequired isInvalid={formik.errors.mobile && formik.touched.mobile ? true : undefined}>
                         <FormLabel>Mobile</FormLabel>
                         <Input name='mobile' type="text" placeholder='mobile' value={formik.values.mobile} onChange={formik.handleChange} onBlur={formik.handleBlur} />
@@ -70,15 +63,14 @@ const SignUp = () => {
                         <Input name='password' type="password" placeholder='password' value={formik.values.password} onChange={formik.handleChange} onBlur={formik.handleBlur} />
                         <FormErrorMessage>{formik.errors.password}</FormErrorMessage>
                     </FormControl>
-                    <Button bg='yellowgreen' type='submit' isLoading={isSubmiting} isDisabled={isSubmiting}>Signup</Button>
-                    <p>Already registerd? <ChakraLink as={ReactRouterLink} to='/signin'>
-                        signin
+                    <Button bg='yellowgreen' type='submit' isLoading={isSubmiting} isDisabled={isSubmiting}>Signin</Button>
+                    <p>Already registerd? <ChakraLink as={ReactRouterLink} to='/signup'>
+                        signup
                     </ChakraLink></p>
                 </div>
-
             </form>
         </div>
     )
 }
 
-export default SignUp
+export default SignIn

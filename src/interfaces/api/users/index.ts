@@ -3,3 +3,8 @@ export interface UserRegistration {
     mobile: string,
     password: string
 }
+
+export interface UserLogin {
+    mobile: string,
+    password: string
+}
