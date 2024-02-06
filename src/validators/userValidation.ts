@@ -7,3 +7,10 @@ export const userRegistrationSchema = yup.object({
     password: yup.string().required('password cannot be empty').matches(new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[*#@&!]).{6,}$'), 'invalid password format')
     
 })
+
+export const userLoginSchema = yup.object({
+
+    mobile: yup.string().required('mobile number cannot be empty').matches(/^[0-9]{10}$/, 'invalid mobile number'),
+    password: yup.string().required('password cannot be empty').matches(new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[*#@&!]).{6,}$'), 'invalid password format')
+    
+})
