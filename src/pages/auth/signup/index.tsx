@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useFormik } from 'formik'
-import { Button, FormControl, FormLabel, FormErrorMessage, Input, useToast } from '@chakra-ui/react';
+import { Button, FormControl, FormLabel, FormErrorMessage, Input, useToast, Link as ChakraLink } from '@chakra-ui/react';
+import { Link as ReactRouterLink } from 'react-router-dom';
+
 
 import styles from '../../../assets/css/pages/auth/signup/index.module.css'
 import { UserRegistration } from '../../../interfaces/api/users';
@@ -68,8 +70,12 @@ const SignUp = () => {
                         <Input name='password' type="password" placeholder='password' value={formik.values.password} onChange={formik.handleChange} onBlur={formik.handleBlur} />
                         <FormErrorMessage>{formik.errors.password}</FormErrorMessage>
                     </FormControl>
-                    <Button bg='yellowgreen' type='submit' isLoading={isSubmiting} isDisabled={isSubmiting}>SIGNUP</Button>
+                    <Button bg='yellowgreen' type='submit' isLoading={isSubmiting} isDisabled={isSubmiting}>Signup</Button>
+                    <p>Already registerd? <ChakraLink as={ReactRouterLink} to='/signin'>
+                        signin
+                    </ChakraLink></p>
                 </div>
+
             </form>
         </div>
     )
