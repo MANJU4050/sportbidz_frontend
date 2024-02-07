@@ -46,7 +46,9 @@ const AppRoutes = () => {
                             return <Route path={route.path} key={route.name} element={route.element} />
                         })
                     }
-                    <Route path='*' element={<NoPageFound />} />
+
+                    <Route path='*' element={!user?.isReloading ? <NoPageFound /> : <Loader />} />
+
 
                 </Routes>
             </Router>
