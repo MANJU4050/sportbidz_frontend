@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import { useFormik } from 'formik'
 import { Button, FormControl, FormLabel, FormErrorMessage, Input, useToast, Link as ChakraLink } from '@chakra-ui/react';
 import { Link as ReactRouterLink, useNavigate } from 'react-router-dom';
@@ -6,14 +6,10 @@ import { Link as ReactRouterLink, useNavigate } from 'react-router-dom';
 import styles from '../../../assets/css/pages/auth/signin/index.module.css'
 import { UserLogin } from '../../../interfaces/api/users';
 import { userLoginSchema } from '../../../validators/userValidation'
-import { loginAction } from '../../../app/auth/authSlice';
-import { useAppDispatch, useAppSelector } from '../../../app/reduxHooks';
 import { AuthContext } from '../../../context/authcontext';
 
 const SignIn = () => {
 
-    const { isAuthenticated } = useAppSelector(state => state.authReducer)
-    const dispatch = useAppDispatch()
 
     const toast = useToast()
     const navigate = useNavigate()
@@ -61,9 +57,7 @@ const SignIn = () => {
         onSubmit: handleSubmit
     })
 
-    if (isAuthenticated) {
-        return null
-    }
+    
 
     return (
         <div className={styles.container}>
