@@ -4,7 +4,10 @@ const baseURL = import.meta.env.VITE_MODE === 'development' ? import.meta.env.VI
 
 const api = axios.create({
     baseURL: `${baseURL}${import.meta.env.VITE_API_VERSION}`,
-    timeout: 1000,
+    headers: {
+        "Content-Type": "application/json",
+    },
+    withCredentials: true
 })
 
 export default api
