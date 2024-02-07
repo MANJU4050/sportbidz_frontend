@@ -1,18 +1,22 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useFormik } from 'formik'
 import { Button, FormControl, FormLabel, FormErrorMessage, Input, useToast, Link as ChakraLink } from '@chakra-ui/react';
-import { Link as ReactRouterLink } from 'react-router-dom';
+import { Link as ReactRouterLink, useNavigate } from 'react-router-dom';
 
 import styles from '../../../assets/css/pages/auth/signin/index.module.css'
 import { UserLogin } from '../../../interfaces/api/users';
-import { loginUserApi } from '../../../api/auth/users';
 import { userLoginSchema } from '../../../validators/userValidation'
+import { AuthContext } from '../../../context/authcontext';
 
 const SignIn = () => {
 
+
     const toast = useToast()
+    const navigate = useNavigate()
 
     const [isSubmiting, setIsSubmiting] = useState(false)
+
+    const { loginUser } = useContext(AuthContext)
 
     const initialValues = {
         mobile: '',
@@ -22,7 +26,10 @@ const SignIn = () => {
     const handleSubmit = async (values: UserLogin, { resetForm }: { resetForm: () => void }) => {
         try {
             setIsSubmiting(true)
-            await loginUserApi(values)
+            const response = await loginUser(values)
+            navigate('/dashboard')
+
+            console.log(response, "")
             resetForm()
             toast({
                 title: 'login successfull',
@@ -31,6 +38,7 @@ const SignIn = () => {
                 isClosable: true
             })
             setIsSubmiting(false)
+
         } catch (error) {
             setIsSubmiting(false)
             toast({
@@ -48,6 +56,8 @@ const SignIn = () => {
         validationSchema: userLoginSchema,
         onSubmit: handleSubmit
     })
+
+    
 
     return (
         <div className={styles.container}>

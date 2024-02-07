@@ -12,3 +12,14 @@ export const loginUserApi = async (payload: UserLogin) => {
     const { data } = await api.post(`/users/login`, payload)
     return data
 }
+
+//check user status
+export const userStatusCheck = async () => {
+    const { data } = await api.get(`/users/checkstatus`)
+    return data
+}
+
+export const logoutApi = async () => {
+    const { data } = await api.delete(`/users/logout`)
+    return data
+}

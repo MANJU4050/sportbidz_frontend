@@ -14,7 +14,6 @@ const PublicRoutes: RouteProps[] = [
     name: 'Home',
     element: <SportzBid />,
     isVisible: true,
-    isIndex: true
   },
   {
     path: Public.SignUp,
