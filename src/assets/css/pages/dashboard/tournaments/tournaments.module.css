@@ -1,0 +1,70 @@
+.container {
+  width: 100%;
+  grid-area: t;
+}
+
+.formcontainer {
+  width: 100%;
+  display: grid;
+  gap: 10px;
+  grid-template-areas:
+    ". . . tname tdate . . ."
+    ". . . tmobile ttype . . ."
+    ". . . tteams tplayers . . ."
+    ". . . tsdate tedate . . ."
+    ". . . tlocation tlocation . . ."
+    ". . . tmax tmax . . ."
+    ". . . tbutton tbutton . . .";
+}
+
+.tname {
+  grid-area: tname;
+}
+
+.tdate {
+  grid-area: tdate;
+}
+
+.ttype {
+  grid-area: ttype;
+}
+
+.tteams {
+  grid-area: tteams;
+}
+
+.tplayers {
+  grid-area: tplayers;
+}
+
+.tlocation {
+  grid-area: tlocation;
+}
+
+.tmobile {
+  grid-area: tmobile;
+}
+
+.tsdate {
+  grid-area: tsdate;
+}
+
+.tedate {
+  grid-area: tedate;
+}
+
+.tmax {
+  grid-area: tmax;
+}
+
+.tbutton {
+  grid-area: tbutton;
+  width: 100%;
+}
+
+.tournamentcontainer {
+  width: 100%;
+  display: grid;
+  grid-template-rows: auto;
+  gap: 20px;
+}
