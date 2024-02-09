@@ -1,8 +1,12 @@
 import { Outlet } from 'react-router-dom'
 
+import styles from '../../../assets/css/components/layout/content/content.module.css'
+
 const Content = () => {
   return (
-    <Outlet />
+    <div className={styles.container}>
+      <Outlet />
+    </div>
   )
 }
 

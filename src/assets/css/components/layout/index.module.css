@@ -1,0 +1,16 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 200px auto; /* Fixed width for sidebar, rest for content */
+  grid-template-areas:
+    "sidebar header header"
+    "sidebar content content";
+  width: 100%;
+  background-color: yellow;
+ 
+}

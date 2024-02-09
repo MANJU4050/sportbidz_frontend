@@ -1,0 +1,11 @@
+.container {
+  width: 100%;
+  grid-area: content;
+  background-color: #1c273b;
+  overflow-y: auto;
+  height: calc(100vh - 70px);
+  padding: 20px;
+  display: grid;
+  grid-template-areas: ". t t .";
+  color: white;
+}
