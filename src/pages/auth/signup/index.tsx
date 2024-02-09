@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useFormik } from 'formik'
 import { Button, FormControl, FormLabel, FormErrorMessage, Input, useToast, Link as ChakraLink } from '@chakra-ui/react';
-import { Link as ReactRouterLink } from 'react-router-dom';
+import { Link as ReactRouterLink, useNavigate } from 'react-router-dom';
 
 
 import styles from '../../../assets/css/pages/auth/signup/index.module.css'
@@ -12,6 +12,7 @@ import { userRegistrationSchema } from '../../../validators/userValidation'
 const SignUp = () => {
 
     const toast = useToast()
+    const navigate = useNavigate()
 
     const [isSubmiting, setIsSubmiting] = useState(false)
 
@@ -33,6 +34,7 @@ const SignUp = () => {
                 isClosable: true
             })
             setIsSubmiting(false)
+            navigate('/signin')
         } catch (error) {
             setIsSubmiting(false)
             toast({

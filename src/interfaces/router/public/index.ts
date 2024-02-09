@@ -5,6 +5,5 @@ export enum Public {
 }
 
 export enum Private {
-   DashboardHome = '',
    Tournaments = 'tournaments'
 }

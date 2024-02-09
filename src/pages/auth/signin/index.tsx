@@ -26,10 +26,9 @@ const SignIn = () => {
     const handleSubmit = async (values: UserLogin, { resetForm }: { resetForm: () => void }) => {
         try {
             setIsSubmiting(true)
-            const response = await loginUser(values)
+            await loginUser(values)
             navigate('/dashboard')
 
-            console.log(response, "")
             resetForm()
             toast({
                 title: 'login successfull',
@@ -57,7 +56,7 @@ const SignIn = () => {
         onSubmit: handleSubmit
     })
 
-    
+
 
     return (
         <div className={styles.container}>

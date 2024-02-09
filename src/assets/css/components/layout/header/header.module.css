@@ -1,0 +1,6 @@
+.container {
+  width: 100%;
+  background-color: #1b273f;
+  min-height: 70px;
+  grid-area: header;
+}
