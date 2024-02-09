@@ -10,3 +10,8 @@ export const getTournamentsByUser = async ({ page, limit, search }: getTournamen
     const { data } = await api.get(`/tournaments/getbyuser?page=${page}&limit=${limit}&search=${search}`)
     return data
 }
+
+export const getAllTournaments = async ({ page, limit, search }: getTournaments) => {
+    const { data } = await api.get(`/tournaments/getall?page=${page}&limit=${limit}&search=${search}`)
+    return data
+}
