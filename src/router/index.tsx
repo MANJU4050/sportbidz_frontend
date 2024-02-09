@@ -1,5 +1,5 @@
 import { Suspense, lazy, useContext, useEffect } from 'react'
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 
 
 import PublicRoutes from "./public";
@@ -26,11 +26,12 @@ const AppRoutes = () => {
             checkUserStatus()
         }
     }, [])
+
     return (
         <Suspense fallback={<Loader />}>
             <Router>
                 <Routes>
-                    <Route path='/' element={<SignIn />} />
+                    <Route path='/' element={!user?.isAuthenticated  ? <SignIn /> : <Navigate to='/dashboard' />} />
                     {
                         user?.isAuthenticated && <Route path='/dashboard' element={<Layout />}>
 
