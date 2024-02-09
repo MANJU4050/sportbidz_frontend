@@ -2,7 +2,7 @@ import { Spinner, Box, Button, Center, Flex, FormControl, Input } from "@chakra-
 import { useRef } from "react"
 
 import styles from '../../../assets/css/pages/dashboard/tournaments/tournaments.module.css'
-import { getTournamentsByUser } from "../../../api/tournaments"
+import { getAllTournaments } from "../../../api/tournaments"
 import { useEffect, useState } from "react"
 
 import TournamentsCard from "../../../components/pages/dashboard/mytournaments/TournamentsCard"
@@ -26,7 +26,7 @@ const Home = () => {
 
     setIsPageLoading(true);
     try {
-      const response = await getTournamentsByUser(page, limit, search);
+      const response = await getAllTournaments({page, limit, search});
       if (response?.length > 0) {
         const combinedTournaments = [...tournaments, ...response];
         const uniqueTournaments = Array.from(new Map(combinedTournaments?.map(tournament => [tournament._id, tournament])).values());
