@@ -26,7 +26,6 @@ export const AuthProvider = ({ children }: { children: ReactElement }) => {
     const checkUser = async () => {
         try {
             const response = await userStatusCheck()
-            console.log(response, "respnse context")
             setUser({
                 user: response?.user,
                 isAuthenticated: response?.isAuthenticated,
@@ -58,7 +57,8 @@ export const AuthProvider = ({ children }: { children: ReactElement }) => {
                 isReloading: false
             })
 
-            console.log(response)
+            return response
+
         } catch (error) {
             console.error(error)
             setUser({
