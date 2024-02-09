@@ -31,7 +31,7 @@ const Tournaments = () => {
 
     setIsPageLoading(true);
     try {
-      const response = await getTournamentsByUser(page, limit, search);
+      const response = await getTournamentsByUser({page, limit, search});
       if (response?.length > 0) {
         const combinedTournaments = [...tournaments, ...response];
         const uniqueTournaments = Array.from(new Map(combinedTournaments?.map(tournament => [tournament._id, tournament])).values());
