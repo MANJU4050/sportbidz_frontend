@@ -26,7 +26,7 @@ const Home = () => {
 
     setIsPageLoading(true);
     try {
-      const response = await getAllTournaments({page, limit, search});
+      const response = await getAllTournaments({ page, limit, search });
       if (response?.length > 0) {
         const combinedTournaments = [...tournaments, ...response];
         const uniqueTournaments = Array.from(new Map(combinedTournaments?.map(tournament => [tournament._id, tournament])).values());
@@ -95,7 +95,7 @@ const Home = () => {
           </Flex>
         </Box>
 
-        <TournamentsCard tournaments={tournaments} />
+        <TournamentsCard tournaments={tournaments} isHome={true} />
 
         <Center>  {isPageLoading && <Spinner />}</Center>
 

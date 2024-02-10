@@ -1,13 +1,10 @@
 import { Grid, GridItem, Card, CardHeader, Heading, CardBody, CardFooter, Button, Box, Text, Center } from "@chakra-ui/react"
 import React from "react"
+import { useNavigate } from "react-router-dom"
 
-const TournamentsCard = ({ tournaments }) => {
+const TournamentsCard = ({ tournaments, isHome }) => {
 
-
-
-
-
-
+  const navigate = useNavigate()
   return (
     <Grid templateColumns='repeat(3,1fr)' gap={6}>
 
@@ -96,9 +93,9 @@ const TournamentsCard = ({ tournaments }) => {
               </CardBody>
 
               <CardFooter >
-                <Box w='100%' textAlign='end'>
-                  <Button bg='green' color='white'>Manage</Button>
-                </Box>
+                {!isHome && <Box w='100%' textAlign='end'>
+                  <Button onClick={() => navigate(`/dashboard/tournament/${tournament?._id}`)} bg='green' color='white'>Manage</Button>
+                </Box>}
               </CardFooter>
 
             </Card>
