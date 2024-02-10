@@ -6,6 +6,5 @@
   height: calc(100vh - 70px);
   padding: 20px;
   display: grid;
-  grid-template-areas: ". t t .";
   color: white;
 }
