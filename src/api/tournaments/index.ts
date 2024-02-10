@@ -15,3 +15,8 @@ export const getAllTournaments = async ({ page, limit, search }: getTournaments)
     const { data } = await api.get(`/tournaments/getall?page=${page}&limit=${limit}&search=${search}`)
     return data
 }
+
+export const getTournamentDetails = async (tournamentId: string) => {
+    const { data } = await api.get(`/tournaments/tournamentdetails/${tournamentId}`)
+    return data
+}

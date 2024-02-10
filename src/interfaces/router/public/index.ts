@@ -5,5 +5,6 @@ export enum Public {
 }
 
 export enum Private {
-   Tournaments = 'tournaments'
+   Tournaments = 'tournaments',
+   Tournament = 'tournament/:tournamentId'
 }
