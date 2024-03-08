@@ -8,3 +8,7 @@ export enum Private {
    Tournaments = 'tournaments',
    Tournament = 'tournament/:tournamentId'
 }
+
+export enum Open {
+   playerregistration = '/tournament/register/:tournamentId'
+}
