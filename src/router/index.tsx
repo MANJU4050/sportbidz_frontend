@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-d
 
 import PublicRoutes from "./public";
 import PrivateRoutes from './private';
+import OpenRoutes from './open'
 import { RouteProps } from "../interfaces/router";
 
 import Loader from '../components/loader';
@@ -46,6 +47,11 @@ const AppRoutes = () => {
                         !user?.isAuthenticated && PublicRoutes?.map((route: RouteProps) => {
                             return <Route path={route.path} key={route.name} element={route.element} />
                         })
+                    }
+                    {
+                      OpenRoutes?.map((route: RouteProps) => {
+                        return <Route path={route.path} key={route.name} element={route.element} />
+                    })
                     }
 
                     <Route path='*' element={!user?.isReloading ? <NoPageFound /> : <Loader />} />

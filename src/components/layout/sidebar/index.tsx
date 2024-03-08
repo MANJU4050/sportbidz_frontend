@@ -4,6 +4,8 @@ import styles from '../../../assets/css/components/layout/sidebar/sidebar.module
 import { Link, useNavigate } from 'react-router-dom'
 import { useContext } from 'react'
 import { AuthContext } from '../../../context/authcontext'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons'
 
 const Sidebar = () => {
 
@@ -17,10 +19,10 @@ const Sidebar = () => {
           <Link to='/dashboard' className={styles.item}>home</Link>
           <Link to='/dashboard/tournaments' className={styles.item}>tournaments</Link>
         </div>
-        <div className={styles.footer}><Button onClick={() => {
+        <div className={styles.footer}><Button width='100%'  display='flex' gap='10px' onClick={() => {
           logoutUser()
           return navigate('/signin')
-        }}>Logout</Button></div>
+        }}><FontAwesomeIcon icon={faRightFromBracket}  />Logout</Button></div>
       </div>
     </div>
   )
