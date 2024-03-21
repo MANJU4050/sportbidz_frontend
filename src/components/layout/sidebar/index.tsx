@@ -18,6 +18,8 @@ const Sidebar = () => {
         <div className={styles.body}>
           <Link to='/dashboard' className={styles.item}>home</Link>
           <Link to='/dashboard/tournaments' className={styles.item}>tournaments</Link>
+          <Link to='/dashboard/auctions' className={styles.item}>auctions</Link>
+
         </div>
         <div className={styles.footer}><Button width='100%'  display='flex' gap='10px' onClick={() => {
           logoutUser()
