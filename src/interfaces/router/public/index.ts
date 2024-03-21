@@ -7,7 +7,8 @@ export enum Public {
 export enum Private {
    Tournaments = 'tournaments',
    Tournament = 'tournament/:tournamentId',
-   Manager = 'manager/register/:tournamentId'
+   Manager = 'manager/register/:tournamentId',
+   Auctions = 'auctions'
   
 }
 
