@@ -1,4 +1,4 @@
-import { Box, Grid } from "@chakra-ui/react"
+import { Box, Button, Grid, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, useDisclosure } from "@chakra-ui/react"
 import { useNavigate, useParams } from "react-router-dom"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faChevronCircleLeft } from "@fortawesome/free-solid-svg-icons"
@@ -8,10 +8,12 @@ import TournamentDetails from "../../../../components/pages/dashboard/mytourname
 import TournamentStats from "../../../../components/pages/dashboard/mytournaments/tournament/TournamentStats"
 import TournamentSettings from "../../../../components/pages/dashboard/mytournaments/tournament/TournamentSettings"
 import TournamentManagers from "../../../../components/pages/dashboard/mytournaments/tournament/TournamentManagers"
+import AuctionForm from "../../../../components/pages/dashboard/mytournaments/tournament/AuctionForm"
 
 const Tournament = () => {
 
   const navigate = useNavigate()
+  const { isOpen, onClose, onOpen } = useDisclosure()
   const { tournamentId } = useParams()
 
   return (
@@ -26,12 +28,22 @@ const Tournament = () => {
                               "p p p"`}
           gap='10px'>
           <TournamentDetails tournamentId={tournamentId} />
-          <TournamentStats tournamentId= {tournamentId}/>
-          <TournamentSettings tournamentId={tournamentId} />
+          <TournamentStats tournamentId={tournamentId} />
+          <TournamentSettings tournamentId={tournamentId} onOpen={onOpen} />
         </Grid>
         <TournamentManagers tournamentId={tournamentId} />
         <TournamentPlayers tournamentId={tournamentId} />
       </Box>
+      <Modal isOpen={isOpen} onClose={onClose} size='xl'>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Create Auction</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+           <AuctionForm tournamentId={tournamentId} onClose={onClose} />
+          </ModalBody>
+        </ModalContent>
+      </Modal>
 
     </Box>
   )
