@@ -1,9 +1,9 @@
-import { Box, Grid, GridItem, Switch, Text } from '@chakra-ui/react'
+import { Box, Button, Grid, GridItem, Switch, Text } from '@chakra-ui/react'
 import { faCopy } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useState } from 'react'
 
-const TournamentSettings = ({ tournamentId }:{tournamentId: string}) => {
+const TournamentSettings = ({ tournamentId, onOpen }:{tournamentId: string, onOpen:()=>void}) => {
 
   const [isActive, setIsActive] = useState(true)
   const [isCopiedPlayer, setIsCopiedPlayer] = useState(false)
@@ -58,6 +58,11 @@ const TournamentSettings = ({ tournamentId }:{tournamentId: string}) => {
             <Switch gridArea='ts' isChecked={isActive} onChange={setActive} />
           </Grid>
 
+        </GridItem>
+        <GridItem padding='10px' bg='green' borderRadius='5px'>
+          <Grid gridTemplateColumns='repeat(12,1fr)' gap='10px'>
+           <Button w='100%' gridArea='tr' onClick={onOpen}>Create Auction</Button>
+          </Grid>
         </GridItem>
       </Grid>
     </GridItem>
