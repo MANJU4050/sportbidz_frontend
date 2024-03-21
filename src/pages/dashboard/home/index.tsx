@@ -95,7 +95,7 @@ const Home = () => {
           </Flex>
         </Box>
 
-        <TournamentsCard tournaments={tournaments} isHome={true} />
+        <TournamentsCard tournaments={tournaments} />
 
         <Center>  {isPageLoading && <Spinner />}</Center>
 

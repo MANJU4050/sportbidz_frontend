@@ -1,4 +1,4 @@
-import { Avatar, Box, Grid, GridItem, Spinner } from '@chakra-ui/react'
+import { Avatar, Box, Grid, GridItem, Heading, Spinner } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 import { getPlayersByTournament } from '../../../../../api/players'
 
@@ -14,7 +14,6 @@ const TournamentPlayers = ({ tournamentId }) => {
             setIsLoading(true)
             if (tournamentId) {
                 const response = await getPlayersByTournament(tournamentId)
-                console.log(response, "players")
                 if (response.length !== 0) {
                     setPlayers(response)
                 }
@@ -32,7 +31,8 @@ const TournamentPlayers = ({ tournamentId }) => {
 
 
     return (
-        <GridItem gridArea='p'>
+        <GridItem gridArea='p' paddingTop='20px'>
+            <Heading>Players</Heading>
             <Grid gridTemplateColumns='repeat(5,1fr)' minHeight='70px' alignContent='center' bg='black' paddingLeft='20px' >
                 <GridItem>Slno</GridItem>
                 <GridItem>Name</GridItem>

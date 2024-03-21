@@ -3,21 +3,31 @@ import { faCopy } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useState } from 'react'
 
-const TournamentSettings = ({ tournamentId }) => {
+const TournamentSettings = ({ tournamentId }:{tournamentId: string}) => {
 
   const [isActive, setIsActive] = useState(true)
-  const [isCopied, setIsCopied] = useState(false)
+  const [isCopiedPlayer, setIsCopiedPlayer] = useState(false)
+  const [isCopiedManager,setIsCopiedManager] = useState(false)
 
   const setActive = () => {
     setIsActive(!isActive)
   }
 
-  const copyToClip = () => {
-    if (isCopied) return
+  const copyToClipPlayer = () => {
+    if (isCopiedPlayer) return
     navigator.clipboard.writeText(`http://localhost:5173/tournament/register/${tournamentId}`)
-    setIsCopied(true)
+    setIsCopiedPlayer(true)
     setTimeout(() => {
-      setIsCopied(false)
+      setIsCopiedPlayer(false)
+    }, 5000)
+  }
+
+  const copyToClipManager = () => {
+    if (isCopiedManager) return
+    navigator.clipboard.writeText(`http://localhost:5173/manager/register/${tournamentId}`)
+    setIsCopiedManager(true)
+    setTimeout(() => {
+      setIsCopiedManager(false)
     }, 5000)
   }
   return (
@@ -26,10 +36,20 @@ const TournamentSettings = ({ tournamentId }) => {
         <GridItem padding='10px' bg='green' borderRadius='5px'>
           <Grid gridTemplateColumns='repeat(12,1fr)' gridTemplateAreas={`"t t t t t t t t t t i c"`} gap='10px'>
             <Text gridArea='t'> Player Registration Link </Text>
-            <Box gridArea='i' cursor='pointer' onClick={copyToClip}>
+            <Box gridArea='i' cursor='pointer' onClick={copyToClipPlayer}>
               <FontAwesomeIcon icon={faCopy} size='2xl' />
             </Box>
-            <Text gridArea='c'>{isCopied ? `copied` : `copy`}</Text>
+            <Text gridArea='c'>{isCopiedPlayer ? `copied` : `copy`}</Text>
+          </Grid>
+
+        </GridItem>
+        <GridItem padding='10px' bg='green' borderRadius='5px'>
+          <Grid gridTemplateColumns='repeat(12,1fr)' gridTemplateAreas={`"t t t t t t t t t t i c"`} gap='10px'>
+            <Text gridArea='t'> Manager Registration Link </Text>
+            <Box gridArea='i' cursor='pointer' onClick={copyToClipManager}>
+              <FontAwesomeIcon icon={faCopy} size='2xl' />
+            </Box>
+            <Text gridArea='c'>{isCopiedManager ? `copied` : `copy`}</Text>
           </Grid>
         </GridItem>
         <GridItem padding='10px' bg='green' borderRadius='5px'>
