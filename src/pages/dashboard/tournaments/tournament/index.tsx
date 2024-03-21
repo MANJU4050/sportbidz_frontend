@@ -7,6 +7,7 @@ import TournamentPlayers from "../../../../components/pages/dashboard/mytourname
 import TournamentDetails from "../../../../components/pages/dashboard/mytournaments/tournament/TournamentDetails"
 import TournamentStats from "../../../../components/pages/dashboard/mytournaments/tournament/TournamentStats"
 import TournamentSettings from "../../../../components/pages/dashboard/mytournaments/tournament/TournamentSettings"
+import TournamentManagers from "../../../../components/pages/dashboard/mytournaments/tournament/TournamentManagers"
 
 const Tournament = () => {
 
@@ -28,6 +29,7 @@ const Tournament = () => {
           <TournamentStats tournamentId= {tournamentId}/>
           <TournamentSettings tournamentId={tournamentId} />
         </Grid>
+        <TournamentManagers tournamentId={tournamentId} />
         <TournamentPlayers tournamentId={tournamentId} />
       </Box>
 

@@ -6,9 +6,12 @@ export enum Public {
 
 export enum Private {
    Tournaments = 'tournaments',
-   Tournament = 'tournament/:tournamentId'
+   Tournament = 'tournament/:tournamentId',
+   Manager = 'manager/register/:tournamentId'
+  
 }
 
 export enum Open {
-   playerregistration = '/tournament/register/:tournamentId'
+   playerregistration = '/tournament/register/:tournamentId',
+   ManagerRegistration = '/manager/register/:tournamentId'
 }

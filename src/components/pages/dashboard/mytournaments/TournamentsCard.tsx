@@ -1,8 +1,11 @@
 import { Grid, GridItem, Card, CardHeader, Heading, CardBody, CardFooter, Button, Box, Text, Center } from "@chakra-ui/react"
-import React from "react"
+import React, { useContext } from "react"
 import { useNavigate } from "react-router-dom"
+import { AuthContext } from "../../../../context/authcontext"
 
-const TournamentsCard = ({ tournaments, isHome }) => {
+const TournamentsCard = ({ tournaments }) => {
+
+  const { user } = useContext(AuthContext)
 
   const navigate = useNavigate()
   return (
@@ -93,8 +96,12 @@ const TournamentsCard = ({ tournaments, isHome }) => {
               </CardBody>
 
               <CardFooter >
-                {!isHome && <Box w='100%' textAlign='end'>
+                {tournament?.createdBy === user?.user?._id && <Box w='100%' textAlign='end'>
                   <Button onClick={() => navigate(`/dashboard/tournament/${tournament?._id}`)} bg='green' color='white'>Manage</Button>
+                </Box>}
+                {tournament?.createdBy !== user?.user?._id && 
+                <Box w='100%' textAlign='end'>
+                <Button onClick={() => navigate(`/dashboard/manager/register/${tournament?._id}`)} bg='orange' color='white'>Register Team</Button>
                 </Box>}
               </CardFooter>
 
