@@ -7,6 +7,8 @@ const Tournaments = lazy(() => import('../../pages/dashboard/tournaments/index')
 const Home = lazy(() => import('../../pages/dashboard/home/index'))
 const Tournament = lazy(() => import('../../pages/dashboard/tournaments/tournament/index'))
 const ManagerRegistrationForm = lazy(() => import('../../pages/dashboard/home/managerregistration'))
+const Auctions = lazy(() => import('../../pages/dashboard/auctions'))
+
 
 const PrivateRoutes: RouteProps[] = [
 
@@ -35,6 +37,13 @@ const PrivateRoutes: RouteProps[] = [
         element: <ManagerRegistrationForm />,
         isVisible: true,
     },
+    {
+        path: Private.Auctions,
+        name: 'Tournament',
+        element: <Auctions />,
+        isVisible: true,
+    },
+   
    
 
 
