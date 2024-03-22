@@ -10,3 +10,8 @@ export const getAuctionsByUser = async () => {
     const { data } = await api.get('/auctions/auctions-by-user')
     return data
 }
+
+export const getAuctionById = async (auctionId: string) => {
+    const { data } = await api.get(`auctions/auction-by-id/${auctionId}`)
+    return data
+}

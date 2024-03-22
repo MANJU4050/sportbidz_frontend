@@ -8,7 +8,8 @@ export enum Private {
    Tournaments = 'tournaments',
    Tournament = 'tournament/:tournamentId',
    Manager = 'manager/register/:tournamentId',
-   Auctions = 'auctions'
+   Auctions = 'auctions',
+   Auction = 'auction/:auctionId/:tournamentId'
   
 }
 
