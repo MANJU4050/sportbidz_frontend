@@ -15,7 +15,6 @@ const Auctions = () => {
             if (response.length !== 0) {
                 setAuctions(response)
             }
-            console.log(response, "auctions")
 
         } catch (error) {
             setIsLoading(false)
@@ -34,7 +33,7 @@ const Auctions = () => {
         <Box ><Grid padding='10px' gap='10px' gridTemplateColumns='repeat(12,1fr)' gridTemplateRows='auto' >
 
             {auctions && auctions?.length !== 0 && auctions?.map((auction) => {
-                return <AuctionCard key={auction?._id} auction={auction} />
+                return <AuctionCard key={auction?._id} auction={auction} getAuctions={getAuctions} />
             })}
 
         </Grid>

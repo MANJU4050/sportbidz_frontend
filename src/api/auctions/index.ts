@@ -11,7 +11,12 @@ export const getAuctionsByUser = async () => {
     return data
 }
 
-export const getAuctionById = async (auctionId: string) => {
-    const { data } = await api.get(`auctions/auction-by-id/${auctionId}`)
+export const getAuctionById = async (auctionId: string, tournamentId: string) => {
+    const { data } = await api.get(`/auctions/auction-by-id/${auctionId}/${tournamentId}`)
+    return data
+}
+
+export const deleteAuctionById = async (auctionId: string) => {
+    const { data } = await api.delete(`/auctions/delete-auction/${auctionId}`)
     return data
 }

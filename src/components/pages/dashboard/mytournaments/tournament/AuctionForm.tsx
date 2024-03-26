@@ -22,7 +22,6 @@ const [isLoading,setIsLoading] = useState(false)
     const registerAuctionHandler = async (values) => {
         try {
            const response = await registerAuction(values)
-           console.log(response)
            toast({
             title: 'auction created succesfully',
             status: 'success',
