@@ -2,6 +2,7 @@ import { lazy } from 'react'
 
 import { Public } from "../../interfaces/router/public"
 import { RouteProps } from "../../interfaces/router"
+import AuctionStatus from '../../components/pages/dashboard/auctions/teamlist'
 
 const SportzBid = lazy(() => import('../../pages/index'))
 const SignUp = lazy(() => import('../../pages/auth/signup/index'))

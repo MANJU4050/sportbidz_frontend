@@ -1,7 +1,7 @@
 export enum Public {
    Home = '/home',
    SignUp = '/signup',
-   SignIn = '/signin'
+   SignIn = '/signin',
 }
 
 export enum Private {
@@ -15,5 +15,6 @@ export enum Private {
 
 export enum Open {
    playerregistration = '/tournament/register/:tournamentId',
-   ManagerRegistration = '/manager/register/:tournamentId'
+   ManagerRegistration = '/manager/register/:tournamentId',
+   AuctionStatus = '/auction/:auctionId'
 }

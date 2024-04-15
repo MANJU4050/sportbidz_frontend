@@ -20,3 +20,8 @@ export const deleteAuctionById = async (auctionId: string) => {
     const { data } = await api.delete(`/auctions/delete-auction/${auctionId}`)
     return data
 }
+
+export const auctionById = async (auctionId: string) => {
+    const { data } = await api.get(`/auctions/auction/${auctionId}`)
+    return data
+}

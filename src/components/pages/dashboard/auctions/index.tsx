@@ -1,6 +1,6 @@
 import io from 'socket.io-client'
 import { motion } from 'framer-motion'
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { useContext, useEffect, useRef, useState } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faFaceFrown, faFaceGrin } from "@fortawesome/free-solid-svg-icons"
@@ -23,10 +23,13 @@ const Auction = () => {
     const { auctionId, tournamentId } = useParams()
     const toast = useToast()
     const { onOpen, onClose, isOpen } = useDisclosure()
+
+    const navigate = useNavigate()
     const notificationRef = useRef(null)
     const soldRef = useRef(null)
     const unSoldRef = useRef(null)
     const newPlayerRef = useRef(null)
+    const [auctionStatus, setAuctionStatus] = useState(true)
     const [isLoading, setIsLoading] = useState(false)
     const [auction, setAuction] = useState({})
     const [isAdmin, setIsAdmin] = useState(false)
@@ -59,6 +62,8 @@ const Auction = () => {
     })
 
     const [socket, setSocket] = useState(null)
+
+    console.log(auctionId, "auction id")
 
 
     const getAuctionDetails = async () => {
@@ -222,7 +227,7 @@ const Auction = () => {
             setMaxBidPoints(maxBidPoint)
         })
 
-        newSocket.on('playerupdate', (player,playerNumber,auctionPlayersCount) => {
+        newSocket.on('playerupdate', (player, playerNumber, auctionPlayersCount) => {
             setBidDetails({})
             setCurrentBids([])
             setCurrentPlayer(player)
@@ -252,6 +257,16 @@ const Auction = () => {
                 unSoldRef.current.play()
             }
         })
+
+        newSocket.on('complete', () => {
+            console.log('completed')
+            setAuctionStatus(true)
+        })
+
+        newSocket.on('finished', () => {
+            navigate(`/auction/${auctionId}`)
+        })
+
         return () => {
 
             newSocket.off('started')
@@ -261,6 +276,7 @@ const Auction = () => {
             newSocket.off('points')
             newSocket.off('playerupdate')
             newSocket.off('playerunsold')
+            newSocket.off('complete')
             newSocket.off('connect')
             newSocket.disconnect()
         }
@@ -297,6 +313,11 @@ const Auction = () => {
         }
     }
 
+    const finishAuction = async () => {
+        if (socket) {
+            await socket.emit('finish', auctionId)
+        }
+    }
 
 
     // const items = Array.from({ length: auction?.numberOfTeams }, (_, index) => index)
@@ -346,7 +367,7 @@ const Auction = () => {
                     <Box gridArea='p' display='flex' justifyContent='flex-start' alignItems='center'>
                         <Text>Place : {currentBiddingPlayer?.address}</Text>
                     </Box>
-                    <Box gridArea='pn' display='flex' justifyContent='center' alignItems='center' bg='yellow'> 
+                    <Box gridArea='pn' display='flex' justifyContent='center' alignItems='center' bg='yellow'>
                         <Text>Player {currentPlayerNumber} of {currentAuctionPlayers}</Text>
                     </Box>
 
@@ -419,7 +440,12 @@ const Auction = () => {
                         <Box display='flex' justifyContent='space-evenly' alignItems='center' gap='10px'>
                             <Button isDisabled={disableStart} onClick={startAuction} bg='green' color='white' w='100%'>start</Button>
                             <Button isDisabled={disableSell} onClick={sellHandler} bg='magenta' color='white' w='100%'>Sell Player</Button>
-                            <Button isDisabled={disableNextPlayer} onClick={nextPlayer} bg='orange' color='white' w='100%'>Next Player</Button>
+                            {auctionStatus ?
+                                <Button isDisabled={disableNextPlayer} onClick={nextPlayer} bg='orange' color='white' w='100%'>Next Player</Button>
+                                :
+                                <Button isDisabled={!auctionStatus} onClick={finishAuction} bg='orange' color='white' w='100%'>Finish Auction</Button>
+
+                            }
                             <Button isDisabled={disableUnsold} onClick={unSoldPlayer} bg='red' color='white' w='100%'>UnSold</Button>
 
                         </Box> </>}
@@ -500,6 +526,7 @@ const Auction = () => {
                     </ModalBody>
                 </ModalContent>
             </Modal>
+
         </>
     )
 }
